@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+    stages {
+        stage('Verify Shell Environment') {
+            steps {
+                script {
+                    // Get the job name and build number
+                    def jobName = env.JOB_NAME
+                    def buildNumber = env.BUILD_NUMBER
+
+                    // Print the job name and build number
+                    echo "Job Name: $jobName"
+                    echo "Build Number: $buildNumber"
+                }
+            }
+        }
+
+        stage('Checkout Jenkins Upgrade3 Git Repository') {
+            steps {
+                script {
+                    // Clone the Git repository's master branch
+                    def gitRepoUrl = 'https://github.com/Yokesh-kumaran/UnitTesting.git'
+
+                    checkout([$class: 'GitSCM',
+                        branches: [[name: '*/master']],
+                        userRemoteConfigs: [[url: gitRepoUrl]],
+                        extensions: [[$class: 'CleanBeforeCheckout'], [$class: 'CloneOption', noTags: false, shallow: true, depth: 1]]
+                    ])
+                }
+            }
+        }
+    }
+}
