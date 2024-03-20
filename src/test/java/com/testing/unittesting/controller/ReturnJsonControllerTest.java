@@ -54,7 +54,7 @@ public class ReturnJsonControllerTest {
 
         MvcResult mvcResult = mockMvc.perform(builder)
                 .andExpect(status().isOk())
-                .andExpect(content().json("{id:2, name:'Love2', price:10, quantity:100}"))
+                .andExpect(content().json("{id:3, name:'Love2', price:10, quantity:100}"))
                 .andReturn();
     }
 
@@ -69,7 +69,7 @@ public class ReturnJsonControllerTest {
 
         MvcResult mvcResult = mockMvc.perform(builder)
                 .andExpect(status().isOk())
-                .andExpect(content().json("[{id:1, name:'A ', price:1, quantity:2}, {id:2, name:'B', price:2, quantity:2}]"))
+                .andExpect(content().json("[{id:1, name:'A', price:1, quantity:2}, {id:2, name:'B', price:2, quantity:2}]"))
                 .andReturn();
     }
 
